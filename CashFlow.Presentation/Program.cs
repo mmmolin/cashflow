@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Cashflow.Presentation
+namespace CashFlow.Presentation
 {
     public class Program
     {
