@@ -1,3 +1,5 @@
+using CashFlow.Core.Interfaces;
+using CashFlow.Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +14,8 @@ namespace CashFlow.Presentation
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddScoped<IExpenditureRepository, ExpenditureRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

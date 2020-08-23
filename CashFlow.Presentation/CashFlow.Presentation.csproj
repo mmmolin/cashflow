@@ -8,4 +8,9 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CashFlow.Core\CashFlow.Core.csproj" />
+    <ProjectReference Include="..\CashFlow.Infrastructure\CashFlow.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
