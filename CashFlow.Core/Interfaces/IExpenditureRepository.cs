@@ -1,14 +1,16 @@
-﻿using System;
+﻿using CashFlow.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CashFlow.Core.Interfaces
 {
-    interface IExpenditureRepository
+    public interface IExpenditureRepository
     {
-        void AddExpenditure();
-        void GetExpenditureById();
-        void UpdateExpenditure();
-        void DeleteExpenditure();
+        void Add(Expenditure expenditure);
+        Expenditure GetById(int id);
+        List<Expenditure> GetAll();
+        void Update(Expenditure expenditure);
+        void Delete(Expenditure expenditure);
     }
 }
