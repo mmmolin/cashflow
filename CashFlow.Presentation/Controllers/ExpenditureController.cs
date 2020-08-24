@@ -11,16 +11,16 @@ namespace CashFlow.Presentation.Controllers
 {
     public class ExpenditureController : Controller
     {
-        private readonly IExpenditureRepository expenditureRepository;
+        private readonly IExpenditureRepository db;
         public ExpenditureController(IExpenditureRepository expenditureRepository)
         {
-            this.expenditureRepository = expenditureRepository;
+            this.db = expenditureRepository;
         }
         // GET: /<controller>/
         public IActionResult Index()
         {
-
-            return View();
+            var expenditures = db.GetAll();
+            return View(expenditures);
         }
     }
 }
