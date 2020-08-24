@@ -22,5 +22,26 @@ namespace CashFlow.Presentation.Controllers
             var expenditures = db.GetAll();
             return View(expenditures);
         }
+
+        public IActionResult Create()
+        {
+
+            return View();
+        }
+
+        public IActionResult Details()
+        {
+            return null;
+        }
+
+        public IActionResult Update()
+        {
+            return null;
+        }
+
+        public IActionResult Delete()
+        {
+            return null;
+        }
     }
 }
