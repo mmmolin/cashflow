@@ -1,6 +1,9 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model CashFlow.Presentation.ViewModels.ExpenditureViewModel
 <h1>ADD</h1>
+<form asp-action="Create" method="post">
+    <label asp-for="Description"></label><br />
+    <input asp-for="Description" />
+    <label asp-for="Amount"></label><br />
+    <input asp-for="Amount" />
+    <button type="submit">Add</button>
+</form>
