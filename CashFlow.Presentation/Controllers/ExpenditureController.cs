@@ -54,9 +54,34 @@ namespace CashFlow.Presentation.Controllers
             return null;
         }
 
-        public IActionResult Update()
+        public IActionResult Update(int id)
         {
-            return null;
+            var expenditure = db.GetById(id);
+            var expenditureModel = new ExpenditureViewModel 
+            { 
+                Description = expenditure.Description, 
+                Amount = expenditure.Amount
+            };
+
+            return View(expenditureModel);
+        }
+
+        [HttpPost]
+        public IActionResult Update(ExpenditureViewModel expenditure)
+        {
+            if(ModelState.IsValid)
+            {
+                var entity = new Expenditure
+                {
+                    Description = expenditure.Description,
+                    Amount = expenditure.Amount
+                };
+
+                db.Update(entity);
+
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         public IActionResult Delete()

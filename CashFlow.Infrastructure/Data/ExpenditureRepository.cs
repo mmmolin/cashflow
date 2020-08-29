@@ -37,7 +37,8 @@ namespace CashFlow.Infrastructure.Data
 
         public void Update(Expenditure expenditure)
         {
-            db.Select(x => x = expenditure).Where(x => x.Id == expenditure.Id);
+            db.Select(x => x = expenditure).Where(x => x.Id == expenditure.Id).First();
+
         }
 
         // Temp

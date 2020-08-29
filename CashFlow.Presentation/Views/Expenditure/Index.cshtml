@@ -17,6 +17,7 @@
                 <td>@expenditure.Id</td>
                 <td>@expenditure.Description</td>
                 <td>@expenditure.Amount</td>
+                <td><a asp-action="Update" asp-route-id="@expenditure.Id">#</a></td>
             </tr>
         }
     </table>
