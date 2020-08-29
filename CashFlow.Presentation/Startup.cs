@@ -1,5 +1,7 @@
+using AutoMapper;
 using CashFlow.Core.Interfaces;
 using CashFlow.Infrastructure.Data;
+using CashFlow.Presentation.Profiles;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +15,8 @@ namespace CashFlow.Presentation
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(ExpenditureProfile));
+
             services.AddControllersWithViews();
 
             services.AddScoped<IExpenditureRepository, ExpenditureRepository>();
