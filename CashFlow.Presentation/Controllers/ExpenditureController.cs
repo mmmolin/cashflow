@@ -84,9 +84,11 @@ namespace CashFlow.Presentation.Controllers
             return View();
         }
 
-        public IActionResult Delete()
+        public IActionResult Delete(int id)
         {
-            return null;
+            var expenditure = db.GetById(id);
+            db.Delete(expenditure);
+            return RedirectToAction("Index");
         }
     }
 }
