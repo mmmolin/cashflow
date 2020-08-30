@@ -1,24 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
 using CashFlow.Core.Entities;
 using CashFlow.Core.Interfaces;
 using CashFlow.Presentation.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace CashFlow.Presentation.Controllers
 {
     public class ExpenditureController : Controller
     {
+        private readonly IMapper mapper;
         private readonly IExpenditureRepository db;
-        public ExpenditureController(IExpenditureRepository expenditureRepository)
+        public ExpenditureController(IMapper mapper, IExpenditureRepository expenditureRepository)
         {
+            this.mapper = mapper;
             this.db = expenditureRepository;
         }
-        // GET: /<controller>/
+
         public IActionResult Index()
         {
             var expenditures = db.GetAll();
@@ -35,12 +33,7 @@ namespace CashFlow.Presentation.Controllers
         {
             if(ModelState.IsValid)
             {
-                var entity = new Expenditure
-                {
-                    Description = expenditure.Description,
-                    Amount = expenditure.Amount
-                };
-
+                var entity = mapper.Map<Expenditure>(expenditure);
                 db.Add(entity);
 
                 return RedirectToAction("Index");
@@ -57,13 +50,9 @@ namespace CashFlow.Presentation.Controllers
         public IActionResult Update(int id)
         {
             var expenditure = db.GetById(id);
-            var expenditureModel = new ExpenditureViewModel 
-            { 
-                Description = expenditure.Description, 
-                Amount = expenditure.Amount
-            };
+            var expenditureViewModel = mapper.Map<ExpenditureViewModel>(expenditure);
 
-            return View(expenditureModel);
+            return View(expenditureViewModel);
         }
 
         [HttpPost]
@@ -71,12 +60,7 @@ namespace CashFlow.Presentation.Controllers
         {
             if(ModelState.IsValid)
             {
-                var entity = new Expenditure
-                {
-                    Description = expenditure.Description,
-                    Amount = expenditure.Amount
-                };
-
+                var entity = mapper.Map<Expenditure>(expenditure);
                 db.Update(entity);
 
                 return RedirectToAction("Index");
