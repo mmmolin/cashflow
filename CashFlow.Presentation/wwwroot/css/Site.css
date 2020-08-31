@@ -1,11 +1,18 @@
-﻿.topnav {
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+/*Nav bar*/
+
+.topnav {
     background-color: #fff;
     overflow: hidden;
 }
 .topnav a {
     float: left;
     display: block;
-    color: #99aab5;
+    color: #505c6d;
     text-align: center;
     padding: 5px 16px;
     text-decoration: none;
@@ -13,6 +20,7 @@
 }
 .topnav a:hover {
     color: #000;
+    font-weight: 500;
 }
 .topnav a:active {
     color: #000;
@@ -30,7 +38,8 @@
 }
 
 @media screen and (max-width: 600px) {
-    .topnav.responsive {position: relative;}
+    
+    .topnav.responsive { position: relative; }
     .topnav.responsive a.icon {
         position: absolute;
         right: 0;
@@ -42,5 +51,8 @@
         text-align: left;
     }
 }
+
+
 body {
+    /*background-color: #e9eef2;*/
 }
