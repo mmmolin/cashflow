@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CashFlow.Core.Entities
+﻿namespace CashFlow.Core.Entities
 {
     public class Expenditure
     {
