@@ -84,7 +84,7 @@ Other
 
 
 
-/*General*/
+/*Flexbox Table*/
 .flex-table {
     display: flex;
     flex-direction: column;
@@ -94,20 +94,15 @@ Other
 .flex-row {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    border: 1px solid red;
-}
-
-.flex-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-
+    
     border: 1px solid red;
 }
 
 .flex-data {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
     border: 1px solid red;
+    padding: 8px;
 }
