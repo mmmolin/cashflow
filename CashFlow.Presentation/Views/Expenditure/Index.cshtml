@@ -1,17 +1,39 @@
 ﻿@model List<CashFlow.Core.Entities.Expenditure>
-@*
-    
-*@
-@{
-    <h1>Works!</h1>
+<nav class="actionnav">
     <a asp-action="Create">+</a>
-    <table>
+</nav>
+<main class="main-content">
+    @{
+        <div class="flex-table">
+            <div class="flex-row">
+                <div>ID</div>
+                <div>Description</div>
+                <div>Amount</div>
+            </div>
+
+            @foreach (var expenditure in Model)
+            {
+                <div class="flex-row">
+                    <div>@expenditure.Id</div>
+                    <div>@expenditure.Description</div>
+                    <div>@expenditure.Amount</div>
+                </div>
+            }
+
+        </div>
+
+
+
+    }
+</main>
+
+@*<table>
         <tr>
             <th>Id</th>
             <th>Description</th>
             <th>Amount</th>
         </tr>
-        @foreach(var expenditure in Model)
+        @foreach (var expenditure in Model)
         {
             <tr>
                 <td>@expenditure.Id</td>
@@ -20,5 +42,4 @@
                 <td><a asp-action="Update" asp-route-id="@expenditure.Id">#</a></td>
             </tr>
         }
-    </table>
-}
+    </table>*@

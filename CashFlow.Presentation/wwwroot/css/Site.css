@@ -1,4 +1,13 @@
-﻿* {
+﻿/*
+Positioning
+Display & Box model
+Color
+Text
+Other
+*/
+
+
+* {
     margin: 0;
     padding: 0;
 }
@@ -6,20 +15,25 @@
 /*Nav bar*/
 
 .topnav {
-    background-color: #fff;
     overflow: hidden;
+
+    background-color: #fff;
 }
 .topnav a {
     float: left;
-    display: block;
-    color: #505c6d;
-    text-align: center;
     padding: 5px 16px;
-    text-decoration: none;
+    
+    display: block;
+    
+    color: #505c6d;
+
     font-size: 17px;
+    text-align: center;
+    text-decoration: none;
 }
 .topnav a:hover {
     color: #000;
+
     font-weight: 500;
 }
 .topnav a:active {
@@ -33,6 +47,7 @@
     .topnav a:not(:first-child) { display: none; }
     .topnav a.icon {
         float: right;
+        
         display: block;
     }
 }
@@ -47,12 +62,52 @@
     }
     .topnav.responsive a {
         float: none;
+        
         display: block;
+
         text-align: left;
     }
 }
 
 
-body {
-    /*background-color: #e9eef2;*/
+/*Expenditure*/
+
+.actionnav {
+    border: 1px solid red;
+    margin: 0px 20px;
+}
+
+.main-content {
+    border: 1px solid red;
+    margin: 0px 20px;
+}
+
+
+
+/*General*/
+.flex-table {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: 1px solid red;
+}
+
+.flex-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    border: 1px solid red;
+}
+
+.flex-data {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
 }
