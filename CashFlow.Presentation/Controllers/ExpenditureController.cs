@@ -3,18 +3,18 @@ using CashFlow.Core.Entities;
 using CashFlow.Core.Interfaces;
 using CashFlow.Presentation.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Data;
 
 namespace CashFlow.Presentation.Controllers
 {
     public class ExpenditureController : Controller
     {
-        private readonly IMapper mapper;
         private readonly IExpenditureRepository db;
+        private readonly IMapper mapper;
         public ExpenditureController(IMapper mapper, IExpenditureRepository expenditureRepository)
         {
-            this.mapper = mapper;
             this.db = expenditureRepository;
+            this.mapper = mapper;
         }
 
         public IActionResult Index()
