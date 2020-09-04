@@ -1,5 +1,4 @@
 using AutoMapper;
-using CashFlow.Core.Entities;
 using CashFlow.Core.Interfaces;
 using CashFlow.Infrastructure.Data;
 using CashFlow.Presentation.Profiles;
@@ -8,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace CashFlow.Presentation
 {
@@ -21,7 +22,8 @@ namespace CashFlow.Presentation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<DatabaseOption>(configuration.GetSection("ConnectionStrings"));
+            services.AddTransient<IDbConnection>(db => new SqlConnection(
+                configuration.GetConnectionString("Connection")));
 
             services.AddAutoMapper(typeof(ExpenditureProfile));
 
