@@ -4,6 +4,7 @@ using Dapper;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CashFlow.Infrastructure.Data
 {
@@ -15,40 +16,40 @@ namespace CashFlow.Infrastructure.Data
             this.connection = connection;
         }
 
-        public void Add(Expenditure expenditure)
+        public async Task AddAsync(Expenditure expenditure)
         {
             var parameters = new { description = expenditure.Description, amount = expenditure.Amount };
             var sql = "INSERT INTO expenditure (description, amount) VALUES(@description, @amount)";
-            connection.Execute(sql, parameters);
+            await connection.ExecuteAsync(sql, parameters);
         }
 
-        public void Delete(Expenditure expenditure)
+        public async Task DeleteAsync(Expenditure expenditure)
         {
             var parameter = new { Id = expenditure.Id };
             var sql = "DELETE expenditure WHERE id = @Id";
-            connection.Execute(sql, parameter);
+            await connection.ExecuteAsync(sql, parameter);
         }
 
-        public Expenditure GetById(int id)
+        public async Task<Expenditure> GetByIdAsync(int id)
         {
             var parameter = new { Id = id };
             var sql = "SELECT * FROM expenditure WHERE id = @Id";
-            var entity = connection.Query<Expenditure>(sql, parameter).FirstOrDefault();
+            var entity = await connection.QueryFirstOrDefaultAsync<Expenditure>(sql, parameter);
             return entity;
         }
 
-        public List<Expenditure> GetAll()
+        public async Task<List<Expenditure>> GetAllAsync()
         {
             string sql = "SELECT * FROM expenditure";
-            var entities = connection.Query<Expenditure>(sql).ToList();
-            return entities;
+            var entities = await connection.QueryAsync<Expenditure>(sql);
+            return entities.ToList();
         }
 
-        public void Update(Expenditure expenditure)
+        public async Task UpdateAsync(Expenditure expenditure)
         {
             var parameters = new { Id = expenditure.Id, Description = expenditure.Description, Amount = expenditure.Amount };
             var sql = "UPDATE expenditure SET description = @Description, amount = @Amount WHERE id = @Id";
-            connection.Execute(sql, parameters);
+            await connection.ExecuteAsync(sql, parameters);
         }
     }
 }

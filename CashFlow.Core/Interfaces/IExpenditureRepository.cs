@@ -1,14 +1,15 @@
 ﻿using CashFlow.Core.Entities;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CashFlow.Core.Interfaces
 {
     public interface IExpenditureRepository
     {
-        void Add(Expenditure expenditure);
-        Expenditure GetById(int id);
-        List<Expenditure> GetAll();
-        void Update(Expenditure expenditure);
-        void Delete(Expenditure expenditure);
+        Task AddAsync(Expenditure expenditure);
+        Task<Expenditure> GetByIdAsync(int id);
+        Task<List<Expenditure>> GetAllAsync();
+        Task UpdateAsync(Expenditure expenditure);
+        Task DeleteAsync(Expenditure expenditure);
     }
 }
