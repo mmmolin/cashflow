@@ -26,11 +26,11 @@ namespace CashFlow.Presentation
             services.AddTransient<IDbConnection>(db => new NpgsqlConnection(
                 configuration.GetConnectionString("Connection")));
 
-            services.AddAutoMapper(typeof(ExpenditureProfile));
+            services.AddAutoMapper(typeof(ExpenseProfile));
 
             services.AddControllersWithViews();
 
-            services.AddScoped<IExpenditureRepository, ExpenditureRepository>();
+            services.AddScoped<IExpenseRepository, ExpenseRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
