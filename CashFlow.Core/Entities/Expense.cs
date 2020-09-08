@@ -1,6 +1,6 @@
 ﻿namespace CashFlow.Core.Entities
 {
-    public class Expenditure
+    public class Expense
     {
         public int Id { get; set; }
         public string Description { get; set; }

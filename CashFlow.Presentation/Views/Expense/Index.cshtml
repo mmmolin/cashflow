@@ -1,4 +1,4 @@
-﻿@model List<CashFlow.Core.Entities.Expenditure>
+﻿@model List<CashFlow.Core.Entities.Expense>
 <nav class="actionnav">
     <a asp-action="Create">+</a>
 </nav>
@@ -11,12 +11,12 @@
                 <div class="flex-data">Amount</div>
             </div>
 
-            @foreach (var expenditure in Model)
+            @foreach (var expense in Model)
             {
                 <div class="flex-row">
-                    <div class="flex-data">@expenditure.Id</div>
-                    <div class="flex-data">@expenditure.Description</div>
-                    <div class="flex-data">@expenditure.Amount</div>
+                    <div class="flex-data">@expense.Id</div>
+                    <div class="flex-data">@expense.Description</div>
+                    <div class="flex-data">@expense.Amount</div>
                 </div>
             }
 
