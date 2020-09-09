@@ -16,8 +16,10 @@ Other
 
 .topnav {
     overflow: hidden;
+    margin: 0px 20px;
 
     background-color: #fff;
+    border: 1px solid red;
 }
 .topnav a {
     float: left;
@@ -74,6 +76,7 @@ Other
 
 .actionnav {
     border: 1px solid red;
+    padding: 5px 0px;
     margin: 0px 20px;
 }
 
