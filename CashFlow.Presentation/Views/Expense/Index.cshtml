@@ -9,6 +9,7 @@
                 <div class="flex-data">ID</div>
                 <div class="flex-data">Description</div>
                 <div class="flex-data">Amount</div>
+                <div class="flex-data">Due Date</div>
             </div>
 
             @foreach (var expense in Model)
@@ -17,6 +18,7 @@
                     <div class="flex-data">@expense.Id</div>
                     <div class="flex-data">@expense.Description</div>
                     <div class="flex-data">@expense.Amount</div>
+                    <div class="flex-data">@expense.DueDate</div>
                 </div>
             }
 

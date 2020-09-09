@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CashFlow.Presentation.ViewModels
 {
@@ -9,5 +10,7 @@ namespace CashFlow.Presentation.ViewModels
         public string Description { get; set; }
         [Required]
         public decimal Amount { get; set; }
+        [Required]
+        public DateTime DueDate { get; set; }
     }
 }

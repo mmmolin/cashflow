@@ -6,10 +6,10 @@ namespace CashFlow.Core.Interfaces
 {
     public interface IExpenseRepository
     {
-        Task AddAsync(Expense expenditure);
+        Task AddAsync(Expense expense);
         Task<Expense> GetByIdAsync(int id);
         Task<List<Expense>> GetAllAsync();
-        Task UpdateAsync(Expense expenditure);
-        Task DeleteAsync(Expense expenditure);
+        Task UpdateAsync(Expense expense);
+        Task DeleteAsync(Expense expense);
     }
 }

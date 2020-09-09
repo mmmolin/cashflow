@@ -2,8 +2,10 @@
 <h1>ADD</h1>
 <form asp-action="Create" method="post">
     <label asp-for="Description"></label><br />
-    <input asp-for="Description" />
+    <input asp-for="Description" /><br />
     <label asp-for="Amount"></label><br />
-    <input asp-for="Amount" />
+    <input asp-for="Amount" /><br />
+    <label asp-for="DueDate"></label><br />
+    <input asp-for="DueDate" />
     <button type="submit">Add</button>
 </form>

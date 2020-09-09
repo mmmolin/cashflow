@@ -14,12 +14,13 @@ namespace CashFlow.Infrastructure.Data
         public ExpenseRepository(IDbConnection connection)
         {
             this.connection = connection;
+            Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
         }
 
         public async Task AddAsync(Expense expense)
         {
-            var parameters = new { description = expense.Description, amount = expense.Amount };
-            var sql = "INSERT INTO expense (description, amount) VALUES(@description, @amount)";
+            var parameters = new { description = expense.Description, amount = expense.Amount, dueDate = expense.DueDate };
+            var sql = "INSERT INTO expense (description, amount, due_date) VALUES(@description, @amount, @dueDate)";
             await connection.ExecuteAsync(sql, parameters);
         }
 
