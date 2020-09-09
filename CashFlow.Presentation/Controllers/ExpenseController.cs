@@ -44,15 +44,20 @@ namespace CashFlow.Presentation.Controllers
 
         public async Task<IActionResult> Details()
         {
+            // Nullcheck
             return null;
         }
 
         public async Task<IActionResult> Update(int id)
         {
             var expense = await db.GetByIdAsync(id);
-            var expenseViewModel = mapper.Map<ExpenseViewModel>(expense);
+            if (expense != null) 
+            {
+                var expenseViewModel = mapper.Map<ExpenseViewModel>(expense);
+                return View(expenseViewModel);
+            }
 
-            return View(expenseViewModel);
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -65,13 +70,18 @@ namespace CashFlow.Presentation.Controllers
 
                 return RedirectToAction("Index");
             }
+
             return View();
         }
 
         public async Task<IActionResult> Delete(int id)
         {
             var expense = await db.GetByIdAsync(id);
-            await db.DeleteAsync(expense);
+            if(expense != null)
+            {
+                await db.DeleteAsync(expense);
+            }
+
             return RedirectToAction("Index");
         }
     }
