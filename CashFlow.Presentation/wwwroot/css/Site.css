@@ -12,14 +12,18 @@ Other
     padding: 0;
 }
 
+body {
+    background-color: #f6f7f8;
+}
+
 /*Nav bar*/
 
 .topnav {
     overflow: hidden;
-    margin: 0px 20px;
-
+    /*margin: 0em 1.5em;*/
     background-color: #fff;
-    border: 1px solid red;
+    border-bottom: 1px solid #d3d6da;
+    /*border: 1px solid red;*/
 }
 .topnav a {
     float: left;
@@ -72,40 +76,51 @@ Other
 }
 
 
-/*Expenditure*/
+/*Expenditure Action Nav*/
 
 .actionnav {
-    border: 1px solid red;
+    display: flex;
+    border-bottom: 2px solid #a7adb6;
     padding: 5px 0px;
-    margin: 0px 20px;
+    margin: 0em 1.5em;
 }
+
+.actionnav > a {
+    text-decoration: none;
+    padding: 0em 1em;
+}
+
+
+/*Expenditure Content Table*/
 
 .main-content {
-    border: 1px solid red;
-    margin: 0px 20px;
+    margin: 0em 1.5em;
 }
 
-
-
-/*Flexbox Table*/
 .flex-table {
     display: flex;
     flex-direction: column;
-    border: 1px solid red;
+    
+    /*border: 1px solid red;*/
 }
 
 .flex-row {
     display: flex;
     flex-direction: row;
-    
-    border: 1px solid red;
+    /*border-top: 1px solid #d3d6da;*/
+    border-bottom: 1px solid #d3d6da;
+    /*border: 1px solid red;*/
 }
+
+    .flex-row:hover {
+        background-color: #b2e9ed;
+    }
 
 .flex-data {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     width: 100%;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     padding: 8px;
 }
