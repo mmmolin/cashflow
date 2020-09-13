@@ -27,7 +27,7 @@ namespace CashFlow.Infrastructure.Data
         public async Task DeleteAsync(Expense expense)
         {
             var parameter = new { Id = expense.Id };
-            var sql = "DELETE expense WHERE id = @Id";
+            var sql = "DELETE FROM expense WHERE id = @Id";
             await connection.ExecuteAsync(sql, parameter);
         }
 

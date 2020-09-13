@@ -21,6 +21,7 @@
                     <div class="flex-data">@expense.Description</div>
                     <div class="flex-data">@expense.Amount</div>
                     <div class="flex-data">@expense.DueDate</div>
+                    <a asp-action="Delete" asp-route-id="@expense.Id">Delete</a> @*temp solution*@
                 </div>
             }
 
