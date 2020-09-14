@@ -25,6 +25,13 @@ body {
     border-bottom: 1px solid #d3d6da;
     /*border: 1px solid red;*/
 }
+    #logo {
+        float: left;
+        margin-left: 1.3em;
+        font-size: 1.5em;
+        padding: 0em;
+        font-weight: 600;
+    }    
 
     .topnav a {
         float: left;
@@ -115,9 +122,9 @@ body {
     /*border: 1px solid red;*/
 }
 
-    .flex-row:hover {
+    /*.flex-row:hover {
         background-color: #b2e9ed;
-    }
+    }*/
 
 .flex-data {
     display: flex;
