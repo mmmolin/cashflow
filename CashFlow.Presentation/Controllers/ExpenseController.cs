@@ -2,7 +2,9 @@
 using CashFlow.Core.Entities;
 using CashFlow.Core.Interfaces;
 using CashFlow.Presentation.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace CashFlow.Presentation.Controllers
@@ -19,7 +21,8 @@ namespace CashFlow.Presentation.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var expenses =  await db.GetAllAsync();
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var expenses =  await db.GetAllAsync(userId);
             return View(expenses);
         }
 
@@ -34,7 +37,8 @@ namespace CashFlow.Presentation.Controllers
             if(ModelState.IsValid)
             {
                 var entity = mapper.Map<Expense>(expense);
-                await db.AddAsync(entity);
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                await db.AddAsync(entity, userId);
 
                 return RedirectToAction("Index");
             }
@@ -50,7 +54,8 @@ namespace CashFlow.Presentation.Controllers
 
         public async Task<IActionResult> Update(int id)
         {
-            var expense = await db.GetByIdAsync(id);
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var expense = await db.GetByIdAsync(id, userId);
             if (expense != null) 
             {
                 var expenseViewModel = mapper.Map<ExpenseViewModel>(expense);
@@ -66,7 +71,8 @@ namespace CashFlow.Presentation.Controllers
             if(ModelState.IsValid)
             {
                 var entity = mapper.Map<Expense>(expense);
-                await db.UpdateAsync(entity);
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                await db.UpdateAsync(entity, userId);
 
                 return RedirectToAction("Index");
             }
@@ -76,10 +82,11 @@ namespace CashFlow.Presentation.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            var expense = await db.GetByIdAsync(id);
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var expense = await db.GetByIdAsync(id, userId);
             if(expense != null)
             {
-                await db.DeleteAsync(expense);
+                await db.DeleteAsync(expense, userId);
             }
 
             return RedirectToAction("Index");
