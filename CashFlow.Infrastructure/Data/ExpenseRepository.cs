@@ -47,6 +47,14 @@ namespace CashFlow.Infrastructure.Data
             return entities.ToList();
         }
 
+        //public async Task<List<Expense>> GetAllTestAsync(string userId, string filterYear, string filterMonth)
+        //{
+        //    var parameter = new { ownerId = userId, year = filterYear, month = filterMonth };
+        //    string sql = "SELECT * FROM expense WHERE owner_id = @ownerId AND EXTRACT(YEAR FROM due_date) = @year AND EXTRACT(MONTH FROM due_date) = @month";
+        //    var entities = await connection.QueryAsync<Expense>(sql, parameter);
+        //    return entities.ToList();
+        //}
+
         public async Task UpdateAsync(Expense expense, string userId)
         {
             var parameters = new { id = expense.Id, description = expense.Description, amount = expense.Amount, dueDate = expense.DueDate, ownerId = userId };
