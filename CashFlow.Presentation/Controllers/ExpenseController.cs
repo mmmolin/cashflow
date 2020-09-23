@@ -2,8 +2,9 @@
 using CashFlow.Core.Entities;
 using CashFlow.Core.Interfaces;
 using CashFlow.Presentation.ViewModels;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -25,6 +26,17 @@ namespace CashFlow.Presentation.Controllers
             var expenses =  await db.GetAllAsync(userId);
             return View(expenses);
         }
+
+        //[HttpPost]
+        //public async Task<IActionResult> Index(IFormCollection collection)
+        //{
+        //    var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        //    // Get Expenses by date
+        //    var year = collection["Year"].FirstOrDefault();
+        //    var month = collection["Month"].FirstOrDefault();
+        //    //var expenses = await db.GetAllTestAsync(userId, year, month);
+        //    return View(expenses);
+        //}
 
         public async Task<IActionResult> Create()
         {
