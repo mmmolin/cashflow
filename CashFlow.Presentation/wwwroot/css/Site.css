@@ -14,6 +14,7 @@ Other
 
 body {
     background-color: #f6f7f8;
+    font-family: Arial;
 }
 
 /*Nav bar*/
@@ -23,7 +24,7 @@ body {
     /*margin: 0em 1.5em;*/
     background-color: #fff;
     border-bottom: 1px solid #d3d6da;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
 }
 
 #logo {
@@ -52,6 +53,12 @@ body {
     .top-nav a:active {
         color: #000;
     }
+
+.top-nav li {
+    float: right;
+    display: block;
+    text-decoration: none;
+}
 
 .top-nav .icon {
     display: none;
@@ -96,7 +103,7 @@ body {
     border-bottom: 2px solid #a7adb6;
     padding: 5px 0px;
     margin: 0em 1.5em;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
 }
 
 .action-nav > a {
