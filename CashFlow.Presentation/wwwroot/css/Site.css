@@ -99,7 +99,7 @@ body {
 
 .bottom-nav {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     border-bottom: 2px solid #a7adb6;
     padding: 5px 0px;
     margin: 0em 1.5em;
@@ -149,4 +149,8 @@ body {
     width: 100%;
     /*border: 1px solid red;*/
     padding: 8px;
+}
+
+#delete-checkbox {
+    display: none;
 }

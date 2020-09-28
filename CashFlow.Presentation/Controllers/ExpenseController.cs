@@ -95,6 +95,7 @@ namespace CashFlow.Presentation.Controllers
             return View();
         }
 
+        [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
