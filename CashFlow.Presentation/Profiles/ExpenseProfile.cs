@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CashFlow.Core.Entities;
-using CashFlow.Presentation.ViewModels;
+using CashFlow.Presentation.Models;
 
 namespace CashFlow.Presentation.Profiles
 {
@@ -8,8 +8,8 @@ namespace CashFlow.Presentation.Profiles
     {
         public ExpenseProfile()
         {
-            CreateMap<Expense, ExpenseViewModel>();
-            CreateMap<ExpenseViewModel, Expense>();
+            CreateMap<Expense, ExpenseModel>();
+            CreateMap<ExpenseModel, Expense>();
         }
     }
 }

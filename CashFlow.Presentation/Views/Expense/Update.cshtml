@@ -1,9 +1,9 @@
-﻿@model CashFlow.Presentation.ViewModels.ExpenseViewModel
+﻿@model CashFlow.Presentation.Models.ExpenseModel
 
-    <form asp-action="Update" method="post">
-        <label asp-for="Description"></label><br />
-        <input asp-for="Description" />
-        <label asp-for="Amount"></label><br />
-        <input asp-for="Amount" />
-        <button type="submit">Update</button>
-    </form>
+<form asp-action="Update" method="post">
+    <label asp-for="Description"></label><br />
+    <input asp-for="Description" />
+    <label asp-for="Amount"></label><br />
+    <input asp-for="Amount" />
+    <button type="submit">Update</button>
+</form>
