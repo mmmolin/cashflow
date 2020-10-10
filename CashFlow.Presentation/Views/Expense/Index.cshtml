@@ -1,10 +1,9 @@
-﻿@model List<CashFlow.Core.Entities.Expense>
+﻿@model CashFlow.Presentation.ViewModels.ExpenseViewModel
 
 <nav class="bottom-nav">
     <div class="action-nav">
         <a asp-action="Create">New</a>
         <button type="submit" form="delete-expense">Delete</button>
-        @*<a asp-action="Delete">Delete</a>*@
     </div>
     <div class="filter-nav">
         <form asp-action="Index" method="post">
@@ -12,7 +11,7 @@
                 <option>2020</option>
                 <option>2021</option>
             </select>
-            <select name="Month">
+            <select id="month-selection" name="Month">
                 <option value="1">January</option>
                 <option value="2">February</option>
                 <option value="3">Mars</option>
@@ -41,7 +40,7 @@
             </div>
 
             <form asp-action="Delete" id="delete-expense" method="post">
-                @foreach (var expense in Model)
+                @foreach (var expense in Model.Expenses)
                 {
                     <div class="flex-row">
                         <div class="flex-data">@expense.Id</div>
@@ -49,10 +48,28 @@
                         <div class="flex-data">@expense.Amount</div>
                         <div class="flex-data">@expense.DueDate</div>
                         <input type="checkbox" id="delete-checkbox" name="id" value="@expense.Id"/>
-                        @*<a asp-action="Delete" asp-route-id="@expense.Id">Delete</a>*@
                     </div>
                 }
             </form>
         </div>
     }
 </main>
+
+@section Scripts 
+{
+    <script>
+        window.onload = function () {
+            SetYearSelector();
+            SetMonthSelector();
+        }
+
+        function SetYearSelector() {
+            document.querySelector('#year-selection').value = @Html.Raw(Model.Year);
+        }
+
+        function SetMonthSelector() {
+
+            document.querySelector('#month-selection').value = @Html.Raw(Model.Month);
+        }
+    </script>
+}

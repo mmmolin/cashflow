@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CashFlow.Core.Entities;
 using CashFlow.Core.Interfaces;
+using CashFlow.Presentation.Models;
 using CashFlow.Presentation.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -26,19 +27,30 @@ namespace CashFlow.Presentation.Controllers
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var year = DateTime.Now.Year.ToString();
             var month = DateTime.Now.Month.ToString();
-            var expenses =  await db.GetAllAsync(userId, year, month);
-            return View(expenses);
+            var viewModel = new ExpenseViewModel() { Year = year, Month = month };
+            var entities = await db.GetAllAsync(userId, year, month);
+            foreach (var entity in entities)
+            {
+                var expense = mapper.Map<ExpenseModel>(entity);
+                viewModel.Expenses.Add(expense);
+            }
+            return View(viewModel);
         }
 
         [HttpPost]
         public async Task<IActionResult> Index(IFormCollection collection)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            // Get Expenses by date
             var year = collection["Year"].FirstOrDefault();
             var month = collection["Month"].FirstOrDefault();
-            var expenses = await db.GetAllAsync(userId, year, month);
-            return View(expenses);
+            var viewModel = new ExpenseViewModel() { Year = year, Month = month };
+            var entities = await db.GetAllAsync(userId, year, month);
+            foreach (var entity in entities)
+            {
+                var expense = mapper.Map<ExpenseModel>(entity);
+                viewModel.Expenses.Add(expense);
+            }
+            return View(viewModel);
         }
 
         public async Task<IActionResult> Create()
@@ -47,9 +59,9 @@ namespace CashFlow.Presentation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ExpenseViewModel expense)
+        public async Task<IActionResult> Create(ExpenseModel expense)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var entity = mapper.Map<Expense>(expense);
                 var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -71,7 +83,7 @@ namespace CashFlow.Presentation.Controllers
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var expense = await db.GetByIdAsync(id, userId);
-            if (expense != null) 
+            if (expense != null)
             {
                 var expenseViewModel = mapper.Map<ExpenseViewModel>(expense);
                 return View(expenseViewModel);
@@ -81,9 +93,9 @@ namespace CashFlow.Presentation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(ExpenseViewModel expense)
+        public async Task<IActionResult> Update(ExpenseModel expense)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var entity = mapper.Map<Expense>(expense);
                 var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -100,7 +112,7 @@ namespace CashFlow.Presentation.Controllers
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var expense = await db.GetByIdAsync(id, userId);
-            if(expense != null)
+            if (expense != null)
             {
                 await db.DeleteAsync(expense, userId);
             }
