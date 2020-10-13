@@ -47,7 +47,7 @@
                         <div class="flex-data">@expense.Description</div>
                         <div class="flex-data">@expense.Amount</div>
                         <div class="flex-data">@expense.DueDate</div>
-                        <input type="checkbox" id="delete-checkbox" name="id" value="@expense.Id"/>
+                        <input type="checkbox" id="delete-checkbox" name="id" value="@expense.Id" />
                     </div>
                 }
             </form>
@@ -55,9 +55,25 @@
     }
 </main>
 
-@section Scripts 
+@section Scripts
 {
     <script>
+
+        document.querySelectorAll(".flex-row").forEach(x =>
+            x.addEventListener('click', deleteCheck));
+
+        function deleteCheck() {
+            document.querySelectorAll("#delete-checkbox").forEach(x =>
+                x.checked = false);
+
+            let checkbox = this.querySelector("#delete-checkbox");
+            if (checkbox.checked == true) {
+                checkbox.checked = false;
+            } else {
+                checkbox.checked = true;
+            }
+        }
+
         window.onload = function () {
             SetYearSelector();
             SetMonthSelector();
