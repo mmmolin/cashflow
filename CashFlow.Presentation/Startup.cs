@@ -32,6 +32,7 @@ namespace CashFlow.Presentation
             services.AddControllersWithViews();
 
             services.AddScoped<IExpenseRepository, ExpenseRepository>();
+            services.AddScoped<IIncomeRepository, IncomeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
