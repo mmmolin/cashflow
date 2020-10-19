@@ -1,43 +1,58 @@
 ﻿using CashFlow.Core.Entities;
 using CashFlow.Core.Interfaces;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CashFlow.Infrastructure.Data
 {
     public class IncomeRepository : IIncomeRepository
     {
-        private IDbConnection connection;
+        private readonly IDbConnection connection;
 
         public IncomeRepository(IDbConnection connection)
         {
             this.connection = connection;
+            Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
         }
-        public Task AddAsync(Income income, string userId)
+        public async Task AddAsync(Income income, string userId)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteAsync(Income income, string userId)
-        {
-            throw new NotImplementedException();
+            var parameters = new { description = income.Description, amount = income.Amount, registered = income.Registered, ownerId = userId };
+            var sql = "INSERT INTO income (description, amount, registered, ownerId) VALUES(@description, @amount, @registered, @ownerId)";
+            await connection.ExecuteAsync(sql, parameters);
         }
 
-        public Task<List<Income>> GetAllAsync(string userId, string filterYear, string filterMonth)
+        public async Task DeleteAsync(Income income, string userId)
         {
-            throw new NotImplementedException();
+            var parameters = new { id = income.Id, ownerId = userId };
+            var sql = "DELETE FROM income WHERE id = @id AND owner_id = ownerId";
+            await connection.ExecuteAsync(sql, parameters);
         }
 
-        public Task<Income> GetByIdAsync(int id, string userId)
+        public async Task<List<Income>> GetAllAsync(string userId, string filterYear, string filterMonth)
         {
-            throw new NotImplementedException();
+            var parameters = new { ownerId = userId, year = filterYear, month = filterMonth };
+            var sql = "SELECT * FROM income WHERE owner_id = @ownerId AND EXTRACT(YEAR from registered)::text = @year AND EXTRACT(MONTH from registered)::text = @month";
+            var entities = await connection.QueryAsync<Income>(sql, parameters);
+            return entities.ToList();
         }
 
-        public Task UpdateAsync(Income income, string userId)
+        public async Task<Income> GetByIdAsync(int id, string userId)
         {
-            throw new NotImplementedException();
+            var parameters = new { id = id, ownerId = userId };
+            var sql = "SELECT * FROM income WHERE id = @id AND owner_id = @ownerId";
+            var entity = await connection.QueryFirstOrDefaultAsync<Income>(sql, parameters);
+            return entity;
+        }
+
+        public async Task UpdateAsync(Income income, string userId)
+        {
+            var parameters = new { id = income.Id, description = income.Description, amount = income.Amount, registered = income.Registered, ownerId = userId };
+            var sql = "UPDATE income SET description = @description, amount = @amount, registered = @registered WHERE id = @id AND owner_id = ownerId";
+            await connection.ExecuteAsync(sql, parameters);
         }
     }
 }
