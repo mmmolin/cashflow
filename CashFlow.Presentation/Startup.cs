@@ -27,7 +27,7 @@ namespace CashFlow.Presentation
             services.AddTransient<IDbConnection>(db => new NpgsqlConnection(
                 configuration.GetConnectionString("Connection")));
 
-            services.AddAutoMapper(typeof(ExpenseProfile));
+            services.AddAutoMapper(typeof(Profiles.ExpenseProfile), typeof(Profiles.ExpenseProfile));
 
             services.AddControllersWithViews();
 
