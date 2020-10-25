@@ -17,10 +17,10 @@ namespace CashFlow.Infrastructure.Data
             this.connection = connection;
             Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
         }
-        public async Task AddAsync(Income income, string userId)
+        public async Task AddAsync(Income income)
         {
-            var parameters = new { description = income.Description, amount = income.Amount, registered = income.Registered, ownerId = userId };
-            var sql = "INSERT INTO income (description, amount, registered, ownerId) VALUES(@description, @amount, @registered, @ownerId)";
+            var parameters = new { description = income.Description, amount = income.Amount, registered = income.Registered, ownerId = income.OwnerId };
+            var sql = "INSERT INTO income (description, amount, registered, owner_id) VALUES(@description, @amount, @registered, @ownerId)";
             await connection.ExecuteAsync(sql, parameters);
         }
 
