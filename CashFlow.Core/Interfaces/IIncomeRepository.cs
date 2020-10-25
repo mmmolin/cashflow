@@ -8,7 +8,7 @@ namespace CashFlow.Core.Interfaces
 {
     public interface IIncomeRepository
     {
-        Task AddAsync(Income income, string userId);
+        Task AddAsync(Income income);
         Task<Income> GetByIdAsync(int id, string userId);
         Task<List<Income>> GetAllAsync(string userId, string? filterYear, string? filterMonth);
         Task UpdateAsync(Income income, string userId);
