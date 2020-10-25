@@ -24,9 +24,9 @@ namespace CashFlow.Infrastructure.Data
             await connection.ExecuteAsync(sql, parameters);
         }
 
-        public async Task DeleteAsync(Income income, string userId)
+        public async Task DeleteAsync(Income income)
         {
-            var parameters = new { id = income.Id, ownerId = userId };
+            var parameters = new { id = income.Id, ownerId = income.OwnerId };
             var sql = "DELETE FROM income WHERE id = @id AND owner_id = ownerId";
             await connection.ExecuteAsync(sql, parameters);
         }
@@ -47,9 +47,9 @@ namespace CashFlow.Infrastructure.Data
             return entity;
         }
 
-        public async Task UpdateAsync(Income income, string userId)
+        public async Task UpdateAsync(Income income)
         {
-            var parameters = new { id = income.Id, description = income.Description, amount = income.Amount, registered = income.Registered, ownerId = userId };
+            var parameters = new { id = income.Id, description = income.Description, amount = income.Amount, registered = income.Registered, ownerId = income.OwnerId };
             var sql = "UPDATE income SET description = @description, amount = @amount, registered = @registered WHERE id = @id AND owner_id = ownerId";
             await connection.ExecuteAsync(sql, parameters);
         }

@@ -72,5 +72,45 @@ namespace CashFlow.Presentation.Controllers
 
             return View(income);
         }
+
+        public async Task<ActionResult> Update(int id)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var entity = await db.GetByIdAsync(id, userId);
+            if(entity != null)
+            {
+                var model = mapper.Map<IncomeModel>(entity);
+                return View(model);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Update(IncomeModel income)
+        {
+            if(ModelState.IsValid)
+            {
+                var entity = mapper.Map<Income>(income);
+                entity.OwnerId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                await db.UpdateAsync(entity);
+
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var entity = await db.GetByIdAsync(id, userId);
+            if(entity != null)
+            {
+                db.DeleteAsync(entity);
+            }
+            return View();
+        }
     }
 }
