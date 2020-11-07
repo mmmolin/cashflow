@@ -110,7 +110,7 @@ namespace CashFlow.Presentation.Controllers
             {
                 await db.DeleteAsync(entity);
             }
-            return RedirectToAction("Index");
+            return View();
         }
     }
 }
