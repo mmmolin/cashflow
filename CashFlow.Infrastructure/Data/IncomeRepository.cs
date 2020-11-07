@@ -27,8 +27,8 @@ namespace CashFlow.Infrastructure.Data
         public async Task DeleteAsync(Income income)
         {
             var parameters = new { id = income.Id, ownerId = income.OwnerId };
-            var sql = "DELETE FROM income WHERE id = @id AND owner_id = ownerId";
-            await connection.ExecuteAsync(sql, parameters);
+            var sql = "DELETE FROM income WHERE id = @id AND owner_id = @ownerId";
+            var test = await connection.ExecuteAsync(sql, parameters);
         }
 
         public async Task<List<Income>> GetAllAsync(string userId, string filterYear, string filterMonth)
