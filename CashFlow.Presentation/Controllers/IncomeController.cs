@@ -108,9 +108,9 @@ namespace CashFlow.Presentation.Controllers
             var entity = await db.GetByIdAsync(id, userId);
             if(entity != null)
             {
-                db.DeleteAsync(entity);
+                await db.DeleteAsync(entity);
             }
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }
