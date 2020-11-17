@@ -10,7 +10,8 @@ namespace CashFlow.Core.Interfaces
     {
         Task AddAsync(Income income);
         Task<Income> GetByIdAsync(int id, string userId);
-        Task<List<Income>> GetAllAsync(string userId, string filterYear, string filterMonth);
+        Task<List<Income>> GetAllByMonthAsync(string userId, string filterYear, string filterMonth);
+        Task<List<Income>> GetAllByYearAsync(string userId, string filterYear);
         Task UpdateAsync(Income income);
         Task DeleteAsync(Income income);
     }
