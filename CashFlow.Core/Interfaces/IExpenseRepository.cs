@@ -8,7 +8,8 @@ namespace CashFlow.Core.Interfaces
     {
         Task AddAsync(Expense expense, string userId);
         Task<Expense> GetByIdAsync(int id, string userId);
-        Task<List<Expense>> GetAllAsync(string userId, string filterYear, string filterMonth);
+        Task<List<Expense>> GetAllByMonthAsync(string userId, string filterYear, string filterMonth);
+        Task<List<Expense>> GetAllByYearAsync(string userId, string filterYear);
         Task UpdateAsync(Expense expense, string userId);
         Task DeleteAsync(Expense expense, string userId);
     }

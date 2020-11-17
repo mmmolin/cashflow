@@ -31,10 +31,18 @@ namespace CashFlow.Infrastructure.Data
             var test = await connection.ExecuteAsync(sql, parameters);
         }
 
-        public async Task<List<Income>> GetAllAsync(string userId, string filterYear, string filterMonth)
+        public async Task<List<Income>> GetAllByMonthAsync(string userId, string filterYear, string filterMonth)
         {
             var parameters = new { ownerId = userId, year = filterYear, month = filterMonth };
             var sql = "SELECT * FROM income WHERE owner_id = @ownerId AND EXTRACT(YEAR from registered)::text = @year AND EXTRACT(MONTH from registered)::text = @month";
+            var entities = await connection.QueryAsync<Income>(sql, parameters);
+            return entities.ToList();
+        }
+
+        public async Task<List<Income>> GetAllByYearAsync(string userId, string filterYear)
+        {
+            var parameters = new { ownerId = userId, year = filterYear };
+            var sql = "SELECT * FROM income WHERE owner_id = @ownerId AND EXTRACT(YEAR from registered)::text = @year";
             var entities = await connection.QueryAsync<Income>(sql, parameters);
             return entities.ToList();
         }
