@@ -28,7 +28,7 @@ namespace CashFlow.Presentation.Controllers
             var year = DateTime.Now.Year.ToString();
             var month = DateTime.Now.Month.ToString();
             var viewModel = new ExpenseViewModel() { Year = year, Month = month };
-            var entities = await db.GetAllAsync(userId, year, month);
+            var entities = await db.GetAllByMonthAsync(userId, year, month);
             foreach (var entity in entities)
             {
                 var expense = mapper.Map<ExpenseModel>(entity);
@@ -44,7 +44,7 @@ namespace CashFlow.Presentation.Controllers
             var year = collection["Year"].FirstOrDefault();
             var month = collection["Month"].FirstOrDefault();
             var viewModel = new ExpenseViewModel() { Year = year, Month = month };
-            var entities = await db.GetAllAsync(userId, year, month);
+            var entities = await db.GetAllByMonthAsync(userId, year, month);
             foreach (var entity in entities)
             {
                 var expense = mapper.Map<ExpenseModel>(entity);

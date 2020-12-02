@@ -29,7 +29,7 @@ namespace CashFlow.Presentation.Controllers
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var year = DateTime.Now.Year.ToString();
             var month = DateTime.Now.Month.ToString();
-            var entity = await db.GetAllAsync(userId, year, month);
+            var entity = await db.GetAllByMonthAsync(userId, year, month);
             var income = mapper.Map<List<IncomeModel>>(entity);
             var viewModel = new IncomeViewModel();
             viewModel.Income = income;
@@ -44,7 +44,7 @@ namespace CashFlow.Presentation.Controllers
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var year = collection["Year"].FirstOrDefault();
             var month = collection["Month"].FirstOrDefault();
-            var entity = await db.GetAllAsync(userId, year, month);
+            var entity = await db.GetAllByMonthAsync(userId, year, month);
             var income = mapper.Map<List<IncomeModel>>(entity);
             var viewModel = new IncomeViewModel();
             viewModel.Income = income;
